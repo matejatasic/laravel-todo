@@ -1,50 +1,34 @@
-@extends('main')
-
-@section('title', '| All Posts');
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
-        <!-- first row -->
-        <div class="col-md-10">
-            <h1>All Posts</h1>
-        </div>
-        <div class="col-md-2">
-            <a href="{{ route('posts.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Creat a new post</a>
-        </div>
-        <!-- !first row -->
-        
-        <!-- second row -->
         <div class="col-md-12">
-            <hr>
+            <h1>Todo List</h1>    
         </div>
-        <!-- !second row -->
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <table class="table">
                 <thead>
-                    <th>#</th>
-                    <th>Title</th>
-                    <th>Body</th>
-                    <th>Created At</th>
-                    <th></th>
+                    <tr>
+                        <th>#</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
-                    @foreach ($posts as $post)
+                    @foreach ($todos as $todo)
                         <tr>
-                            <th>{{ $post->id }}</th>
-                            <td>{{ $post->title }}</td>    
-                            <td>{{ substr(strip_tags($post->body), 0, 50) }}{{ strlen(strip_tags($post->body)) > 50 ? '...' : '' }}</td>    
-                            <td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>    
-                            <td><a href="{{ route('posts.show', $post->id) }}" class="btn btn-default btn-sm">View</a> <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-default btn-sm">Edit</a></td>    
-                        </tr>                       
+                            <td>{{ $todo->id }}</td>
+                            <td>{{ $todo->description }}</td>
+                            <td>
+                                <a href="#" class="btn btn-success btn-sm mb-2">Check</a>
+                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
-
-            <div class="text-center">
-                {{ $posts->links() }}
-            </div>
         </div>
     </div>
 @endsection
