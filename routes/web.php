@@ -19,5 +19,6 @@ Route::get('/', function () {
 });
 
 Route::get('/todo/index', [TodoController::class, 'index'])->name('todos.index');
+Route::get('/todo/create', [TodoController::class, 'create'])->name('todos.create');
 
 Auth::routes();
