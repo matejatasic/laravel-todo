@@ -19,6 +19,7 @@
 </head>
 <body>
     <div id="app">
+        <!-- navbar -->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="{{ url('/') }}">
                 Laravel Todo
@@ -70,8 +71,30 @@
                 </ul>
             </div>
         </nav>
+        <!-- !navbar -->
 
-        <main class="py-4">
+        <main class="py-4 container">
+            <!-- session flash -->
+            @if (Session::has('success'))
+                <div class="alert alert-success" role="alert">
+                    <strong>Success: </strong> {{ Session::get('success') }}
+                </div>
+            @endif
+            <!-- !session flash -->
+
+            <!-- errors -->
+            @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    <strong>Errors:</strong>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <!-- !errors -->
+            
             @yield('content')
         </main>
     </div>
