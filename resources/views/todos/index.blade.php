@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row mb-2">
+        <div class="col-md-8">
             <h1>Todo List</h1>    
+        </div>
+        <div class="col-md-2">
+            <a href="{{ route('todos.create') }}" class="btn btn-primary m-auto">Create</a>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <table class="table">
                 <thead>
                     <tr>
