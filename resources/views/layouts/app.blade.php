@@ -20,7 +20,7 @@
 <body>
     <div id="app">
         <!-- navbar -->
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <a class="navbar-brand" href="{{ url('/') }}">
                 Laravel Todo
             </a>
@@ -73,7 +73,7 @@
         </nav>
         <!-- !navbar -->
 
-        <main class="py-4 container">
+        <main class="py-5 container">
             <!-- session flash -->
             @if (Session::has('success'))
                 <div class="alert alert-success" role="alert">
@@ -94,7 +94,7 @@
                 </div>
             @endif
             <!-- !errors -->
-            
+
             @yield('content')
         </main>
     </div>
