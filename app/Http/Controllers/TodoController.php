@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Todo;
 
 class TodoController extends Controller
 {
@@ -13,7 +15,10 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $todos = $user->todos;
+
+        return view('todos.index')->with('todos', $todos);
     }
 
     /**
