@@ -18,6 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/todo/index', [TodoController::class, 'index'])->name('todo.index');
+Route::get('/todo/index', [TodoController::class, 'index'])->name('todos.index');
 
 Auth::routes();
