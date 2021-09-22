@@ -26,7 +26,11 @@
                             <td>{{ $todo->description }}</td>
                             <td class="d-flex flex-row">
                                 <a href="{{ route('todos.edit', $todo->id) }}" class="btn btn-success btn-sm mr-2"><i class="fas fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+                                <form action="{{ route('todos.destroy', $todo->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
