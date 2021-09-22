@@ -44,7 +44,7 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'description' => 'required|min:50|max:255',
+            'description' => 'required|max:255',
         ]);
 
         $todo = new Todo;
@@ -94,7 +94,7 @@ class TodoController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'description' => 'required|min:50|max:255',
+            'description' => 'required|max:255',
         ]);
 
         $todo = Todo::find($id);
@@ -117,6 +117,13 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $todo = Todo::find($id);
+        $user = Auth::user();
+        $todos = $user->todos()->paginate(5);
+        $todo->delete();
+
+        Session::flash('success', 'Task successfully deleted!');
+        
+        return redirect()->route('todos.index')->with('todos', $todos);
     }
 }
