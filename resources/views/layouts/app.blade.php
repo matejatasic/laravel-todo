@@ -16,6 +16,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/f9d2d5cb9c.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
