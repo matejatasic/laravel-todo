@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Todo;
+use Session;
 
 class TodoController extends Controller
 {
@@ -19,7 +20,7 @@ class TodoController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $todos = $user->todos;
+        $todos = $user->todos()->paginate(5);
 
         return view('todos.index')->with('todos', $todos);
     }
@@ -42,7 +43,21 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'description' => 'required|min:50',
+        ]);
+
+        $todo = new Todo;
+        $user = Auth::user();
+        $todos = $user->todos()->paginate(5);
+
+        $todo->description = $request->description;
+        $todo->user_id = Auth::id();
+        $todo->save();
+
+        Session::flash('success', 'Task successfully added!');
+
+        return redirect()->route('todos.index')->with('todos', $todos);
     }
 
     /**
