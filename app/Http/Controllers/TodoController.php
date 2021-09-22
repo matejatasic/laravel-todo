@@ -81,7 +81,13 @@ class TodoController extends Controller
     {
         $todo = Todo::find($id);
 
-        return view('todos.edit')->with('todo', $todo);
+        if($todo->user_id !== Auth::id()) {
+            Session::flash('error', 'You are not allowed to edit this task!');
+            return redirect('/');
+        }
+        else {
+            return view('todos.edit')->with('todo', $todo);
+        }
     }
 
     /**
