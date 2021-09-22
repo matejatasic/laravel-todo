@@ -24,9 +24,9 @@
                         <tr>
                             <td>{{ $todo->id }}</td>
                             <td>{{ $todo->description }}</td>
-                            <td>
-                                <a href="{{ route('todos.edit', $todo->id) }}" class="btn btn-success btn-sm mb-2">Edit</a>
-                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            <td class="d-flex flex-row">
+                                <a href="{{ route('todos.edit', $todo->id) }}" class="btn btn-success btn-sm mr-2"><i class="fas fa-edit"></i></a>
+                                <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     @endforeach
